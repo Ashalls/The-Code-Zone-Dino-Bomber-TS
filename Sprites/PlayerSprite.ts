@@ -3,9 +3,12 @@ interface iBombManager {
 }
 
 class PlayerSprite extends BaseSprite implements iBombManager {
-    public throwLength: number = 2;
     public fuseTime: number = 2000;
     public bombCount: number = 1;
+
+    // Week 3 hack
+    public throwPower: number = 2;
+    public throwLength: number = 2;
 
     public bombManager: BombManager;
 
@@ -30,6 +33,7 @@ class PlayerSprite extends BaseSprite implements iBombManager {
         });
     }
 
+    // Week 3 hack
     private throwBomb(): void {
         if (this.bombManager.bombs.length > this.bombCount - 1) {
             return;
@@ -43,7 +47,7 @@ class PlayerSprite extends BaseSprite implements iBombManager {
         let bomb = new BombSprite(assets.image`bomb`, this.bombManager, BombTypes.C4);
         this.bombManager.bombs.push(bomb);
         bomb.sprite.setPosition(this.sprite.x, this.sprite.y);
-        bomb.sprite.setVelocity(this.sprite.vx * 2, this.sprite.vy * 2);
+        bomb.sprite.setVelocity(this.sprite.vx * this.throwPower, this.sprite.vy * this.throwPower);
         while (spriteutils.distanceBetween(this.sprite, bomb.sprite) < this.throwLength * 16) {
             pause(100);
         }

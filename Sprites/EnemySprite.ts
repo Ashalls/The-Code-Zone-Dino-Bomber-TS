@@ -19,6 +19,7 @@ class EnemySprite extends BaseSprite {
         }
     }
 
+    // Hack Week 2
     public ghostBehaviour(dino: Sprite) {
         let ghostPos: tiles.Location;
         let startCol: number;

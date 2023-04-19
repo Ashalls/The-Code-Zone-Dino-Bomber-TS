@@ -38,6 +38,12 @@ class GameManager {
         sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (ghost: Sprite, bomb: Sprite) {
             bomb.data.bombManager.bombKills += 1;
             info.changeScoreBy(bomb.data.bombManager.bombKills);
+            
+            // Week one hack removed
+            // if (sprites.allOfKind(SpriteKind.Enemy).length < 1){
+            //     game.over(true);
+            // }
+            
             ghost.destroy()
             pause(500);
         })
@@ -62,6 +68,7 @@ class GameManager {
     }
 
     private onUpdate(): void {
+        // Hack Week 2
         game.onUpdate(function tick(): void {
             for (let ghost of sprites.allOfKind(SpriteKind.Enemy)) {
                 ghost.data.ghostBehaviour(this.dino.sprite);
@@ -69,6 +76,7 @@ class GameManager {
         })
     }
 
+    // Hack Week 1 New Level 
     private setupNewLevel(): void {
         this.level += 1;
         this.tileMap = new TilemapManager(this.tileMapLevels[this.level], 9, this.dino);
