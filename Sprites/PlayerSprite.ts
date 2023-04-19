@@ -9,7 +9,6 @@ class PlayerSprite extends BaseSprite implements iBombManager {
     // Week 3 hack
     public throwPower: number = 2;
     public throwLength: number = 2;
-
     public bombManager: BombManager;
 
     constructor(playerImage: Image) {
@@ -25,8 +24,8 @@ class PlayerSprite extends BaseSprite implements iBombManager {
         }
 
         let bomb = new BombSprite(assets.image`bomb`, this.bombManager, BombTypes.C4);
-        this.bombManager.bombs.push(bomb)
-        tiles.placeOnTile(bomb.sprite, this.sprite.tilemapLocation())
+        this.bombManager.bombs.push(bomb);
+        tiles.placeOnTile(bomb.sprite, this.sprite.tilemapLocation());
         bomb.sprite.lifespan = this.fuseTime;
         timer.after(this.fuseTime, function () {
             bomb.blowUp();
@@ -62,7 +61,7 @@ class PlayerSprite extends BaseSprite implements iBombManager {
         controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             this.throwBomb();
         });
-
+        
         controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             this.placeBomb();
         })
