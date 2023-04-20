@@ -36,7 +36,7 @@ class TilemapManager {
         tiles.setTileAt(this.player.sprite.tilemapLocation(), assets.tile`empty`);
     }
 
-    public buildLevel() {
+    public buildLevel(): void {
         tiles.setCurrentTilemap(this.tileMap)
         scene.setBackgroundColor(this.backgroundColour);
         this.placeBricks();

@@ -1,0 +1,114 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>645</x><y>49</y><w>259</w><h>133</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt; Class BaseSprite
+--
+&lt;&lt;constructor&gt;&gt; BaseSprite(spriteImage: Image, spriteKind: any);
+Properties
++sprite: Sprite;
+- spriteImage: Image;
++spriteKind: any;
+
+--
+Operations
++crateSprite(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>519</x><y>259</y><w>189</w><h>133</h></coordinates><panel_attributes>Class PlayerSprite
+--
+&lt;&lt;constructor&gt;&gt; PlayerSprite(spriteImage: Image);
+Properties
+
+--
+Operations
++placeBomb(): void;
++throwBomb(): void;
+-registerControlls(): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>659</x><y>175</y><w>21</w><h>98</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>49</y><w>147</w><h>133</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt; iBombManager
+--
+Properties
++bombManager: BombManager;
++fuseTime: number;
++bombCount: number;
++throwPower: number;
++throwLength: number;
+
+--
+Operations
++placeBomb(): void
++thowBomb(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>175</y><w>21</w><h>98</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>960</x><y>49</y><w>231</w><h>133</h></coordinates><panel_attributes>Class EnemySprite
+--
+&lt;&lt;constructor&gt;&gt; EnemySprite(enemyImage: Image);
+Properties
++ghostSpeed: number;
+
+--
+Operations
++handleGhostMovement(): void;
++ghostBehaviour(playerSprite: Sprite): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>897</x><y>91</y><w>77</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>519</x><y>448</y><w>189</w><h>133</h></coordinates><panel_attributes>Class BombManager
+--
+&lt;&lt;constructor&gt;&gt; BombManager(spriteImage: Image);
+Properties
++ghostSpeed: number;
+
+--
+Operations
++handleGhostMovement(): void;
++ghostBehaviour(playerSprite: Sprite): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>385</y><w>21</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>771</x><y>448</y><w>133</w><h>21</h></coordinates><panel_attributes>Enum BombTypes</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>757</x><y>259</y><w>427</w><h>133</h></coordinates><panel_attributes>Class BombSprite
+--
+&lt;&lt;constructor&gt;&gt; BombSprite(assetImage: Image, bombManager: BombManager, bombType: BombTypes);
+Properties
++ bombRange: number;
++ bombManager: BombManager
+
+--
+Operations
++blowUp(): void;
+-destroyBricks(tile: any): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>778</x><y>175</y><w>21</w><h>98</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>827</x><y>385</y><w>21</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>701</x><y>301</y><w>70</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>925</x><y>448</y><w>259</w><h>91</h></coordinates><panel_attributes>Class ExplosionSprite
+--
+&lt;&lt;constructor&gt;&gt; ExplosionSprite(bombManager: BombManager);
+Properties
++ bombManager: BombManager;
+
+--
+Operations
++spawnExplosion(tile: any): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1009</x><y>385</y><w>21</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>64</x><y>448</y><w>434</w><h>133</h></coordinates><panel_attributes>Class TileMapManager
+--
+&lt;&lt;constructor&gt;&gt; TileMapManager(tileMap: tiles.TileMapData, backgroundColour: number, player: PlayerSprite);
+Properties
++tileMap: tiles.TileMapData;
++backgroundColour: number;
++player: PlayerSprite;
+
+--
+Operations
+-placeBricks(): void;
+-placeSprites(): void;
++buildLevel(): void;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>162</x><y>217</y><w>294</w><h>189</h></coordinates><panel_attributes>Class GameManager
+--
+&lt;&lt;constructor&gt;&gt; GameManager(tilemapsToLoad: tiles.TileMapData[]);
+Properties
++level: number;
+- dino: playerSprite;
+-tileMap: TileMapManager;
+-tileMapLevels: tiles.TileMapData[];
+
+--
+Operations
+-createPlayerSprite(): void;
+-setupScene(): void;
+-onOverlaps(): void;
+-setupWallBounce(): void;
+-onUpdate(): void;
+-setupNewLevel(): void;
+-levelManager(): void
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>309</x><y>399</y><w>21</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>449</x><y>322</y><w>84</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element></diagram>

@@ -39,8 +39,8 @@ class BombSprite extends BaseSprite {
     
     private bombType: BombTypes;
 
-    constructor(playerImage: Image, bombManager: BombManager, bombType: BombTypes) {
-        super(playerImage, SpriteKind.Bomb);
+    constructor(assetImage: Image, bombManager: BombManager, bombType: BombTypes) {
+        super(assetImage, SpriteKind.Bomb);
         this.bombManager = bombManager;
         this.bombType = bombType;
         this.createSprite();
@@ -60,7 +60,7 @@ class BombSprite extends BaseSprite {
         }
     }
 
-    private destroyBricks(tile: any) {
+    private destroyBricks(tile: any): void {
         tiles.setTileAt(tile, assets.tile`empty`)
         tiles.setWallAt(tile, false)
     }

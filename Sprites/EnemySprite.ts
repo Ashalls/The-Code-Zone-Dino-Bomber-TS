@@ -7,7 +7,7 @@ class EnemySprite extends BaseSprite {
         this.sprite.data = this;
     }
 
-    public handleGhostMovement() {
+    public handleGhostMovement(): void {
         let yVel: number;
         let xVel: number;
         if (this.sprite.vx != 0) {
@@ -20,7 +20,7 @@ class EnemySprite extends BaseSprite {
     }
 
     // Hack Week 2
-    public ghostBehaviour(dino: Sprite) {
+    public ghostBehaviour(dino: Sprite): void {
         let ghostPos: tiles.Location;
         let startCol: number;
         let startRow: number;

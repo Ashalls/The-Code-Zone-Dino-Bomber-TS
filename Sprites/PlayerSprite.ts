@@ -1,5 +1,12 @@
 interface iBombManager {
     bombManager: BombManager;
+    fuseTime: number;
+    bombCount: number;
+    throwPower: number;
+    throwLength: number;
+    
+    placeBomb: () => void;
+    throwBomb: () => void;
 }
 
 class PlayerSprite extends BaseSprite implements iBombManager {
@@ -18,7 +25,7 @@ class PlayerSprite extends BaseSprite implements iBombManager {
         this.registerControlls();
     }
 
-    private placeBomb(): void {
+    public placeBomb(): void {
         if (this.bombManager.bombs.length > this.bombCount - 1) {
             return
         }
@@ -33,7 +40,7 @@ class PlayerSprite extends BaseSprite implements iBombManager {
     }
 
     // Week 3 hack
-    private throwBomb(): void {
+    public throwBomb(): void {
         if (this.bombManager.bombs.length > this.bombCount - 1) {
             return;
         }
